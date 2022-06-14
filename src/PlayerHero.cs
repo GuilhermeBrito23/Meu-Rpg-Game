@@ -26,40 +26,49 @@ namespace RPG_Game.src
             ";
         }
 
-        public bool levelUP(int exp)
+        public bool VerifyLVLUP(int exp)
         {
-            this.exp = exp;
-            if (this.exp > maxExp)
+            if (this.exp>= this.maxExp)
             {
-                 Console.WriteLine("Você subiu de nivel");
-                while (this.exp >= maxExp){
-               
-                int overExp = this.exp - this.maxExp;
-
-                this.exp = overExp;
-                this.maxExp *=2;
-                this.maxHP += maxHP;
-                this.hp = maxHP;
-                this.power *= 2;
-                this.level += 1;
-                }
-                
-                return true;
-            }
-            else if (this.exp == this.maxExp)
-            {
+            
                 Console.WriteLine("Você subiu de nivel");
-
-                this.exp = 0;
-                this.maxHP += maxExp;
-                this.hp = maxHP;
-                this.power *= 2;
-                this.level += 1;
                 return true;
+
             }
             else
             {
                 return false;
+            }
+        }
+
+        public void LVLUP(int exp)
+        {
+
+            
+            if (this.exp == this.maxExp)
+            {
+                this.exp = 0;
+                this.maxExp += maxExp;
+                this.maxHP += maxHP;
+                this.hp = maxHP;
+                this.power *= 2;
+                this.level += 1;
+            }
+            if (this.exp > this.maxExp)
+            {
+                while (this.exp > this.maxExp)
+                {
+                    this.exp -= this.maxExp;
+                    if (this.exp < 0)
+                    {
+                        this.exp = 0;
+                    }
+                    this.maxExp += maxExp;
+                    this.maxHP += maxHP;
+                    this.hp = maxHP;
+                    this.power *= 2;
+                    this.level += 1;
+                }
             }
         }
     }
